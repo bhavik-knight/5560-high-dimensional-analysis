@@ -1,7 +1,9 @@
 # Hierarchical Clustering Analysis
 
 ## Coded By: 
-Miguel Angel Pafalox Gomez [GitHub](https://github.com/ter-kes)
+Miguel Angel Pafalox Gomez [GitHub](https://github.com/ter-kes) [clustering]
+Bhavik Bhagat [GitHub](https://github.com/bhavik-knight) [Executed SQL in Python]
+Md Chistia Chowdhury [Provided SQL Query]
 
 ## 1. Overview
 
@@ -56,7 +58,7 @@ uv sync
 
 ### 6. Execute the script
 ```bash
-uv run main.py
+uv run clustering.py
 ```
 
 ## 7. Output
