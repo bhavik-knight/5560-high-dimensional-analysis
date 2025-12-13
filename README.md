@@ -1,21 +1,29 @@
-# Hierarchical Clustering Analysis
+# High Dimensional Analysis
 
 ## Coded By: 
-Miguel Angel Pafalox Gomez [GitHub](https://github.com/ter-kes) [clustering]
-Bhavik Bhagat [GitHub](https://github.com/bhavik-knight) [Executed SQL in Python]
-Md Chistia Chowdhury [Provided SQL Query]
+Miguel Angel Pafalox Gomez [GitHub](https://github.com/ter-kes) [Clustering]
+
+Bhavik Bhagat [GitHub](https://github.com/bhavik-knight) [Correceted SQL Query]
+
+Md Chistia Chowdhury [Provided initial SQL Query]
 
 ## 1. Overview
 
-This project contains a Python script designed to perform **hierarchical agglomerative clustering** on supplier data based on the products they supply.
+This project performs high-dimensional analysis on supplier data with two main components:
 
-The analysis uses the **Jaccard Distance** metric to quantify dissimilarity between suppliers based on their product portfolios and visualizes these relationships using a **dendrogram**.
+**Part 1: Identify Overcharging Suppliers**  
+Uses SQL queries to find suppliers whose unit costs exceed the average cost for each product.
+
+**Part 2: Hierarchical Clustering for Supplier Alternatives**  
+Performs hierarchical agglomerative clustering on supplier data based on their product portfolios to identify alternative suppliers.
+
+The analysis uses the Jaccard Distance metric to quantify dissimilarity between suppliers and visualizes relationships using a dendrogram.
 
 ---
 
 ## 2. Dependencies
 
-The script requires the following Python packages:
+The scripts require the following Python packages:
 
 - **pandas** — data loading and manipulation  
 - **scipy** — distance calculation and hierarchical clustering  
@@ -23,6 +31,7 @@ The script requires the following Python packages:
   - `linkage`
 - **matplotlib** — visualization (dendrogram plotting)  
 - **openpyxl** — required by pandas to read `.xlsx` files  
+- **sqlite3** — for in-memory database operations (standard library)  
 
 ---
 
@@ -46,45 +55,71 @@ Linux/Mac:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### 4. Clone the project from Github
+### B. Clone the project from Github
 ```bash
 git clone 
 ```
 
-### 5. Install dependencies
+### C. Install dependencies
 ```bash
 uv sync
 ```
 
-### 6. Execute the script
+---
+
+## 4. Part 1: Find Overcharging Suppliers
+
+### Execution
+```bash
+uv run query.py
+```
+
+### Description
+This script reads supplier data from `Supplier_Cube_PivotTable_TT.xlsx`, loads it into an in-memory SQLite database, and executes a SQL query to identify suppliers charging above the average unit cost for each product.
+
+### Output
+Prints a DataFrame showing:
+- Supplier First Name
+- Product Name
+- Unit Cost
+- Average Unit Cost for the Product
+
+Sorted by descending unit cost.
+
+---
+
+## 5. Part 2: Hierarchical Clustering Analysis
+
+### Execution
 ```bash
 uv run clustering.py
 ```
 
-## 7. Output
+### Description
+This script performs hierarchical agglomerative clustering on supplier data from `dataset2.xlsx` based on their product portfolios.
 
-The script generates two main outputs:
-
-### Console Output
-Prints messages during execution (if any are added).
-
-### Visualization Output
-A saved image file (e.g., `dendrogram.png`) displaying the **Hierarchical Agglomerative Clustering dendrogram**.  
-This plot illustrates the relationships between suppliers based on their product similarity.
+### Output
+- Console Output: Prints messages during execution (if any).
+- Visualization Output: A saved image file (`dendrogram.png`) displaying the hierarchical clustering dendrogram.
 
 ---
 
-## 7. Core Logic Details
+## 6. Core Logic Details
 
-### Data Preparation
+### Part 1: Query Logic
+- Loads Excel sheets into pandas DataFrames and stores them in an SQLite database.
+- Uses a CTE to calculate average unit costs per product.
+- Joins back to find suppliers exceeding the average cost.
+
+### Part 2: Clustering Logic
+
+#### Data Preparation
 - Performs **one-hot encoding** on `ProductID`
 - Creates a binary matrix (**Supplier × Product**) where:
   - `1` indicates the supplier sells the product
   - `0` indicates the supplier does not
 
----
-
-### Distance Metric
+#### Distance Metric
 - Uses **Jaccard Distance**, calculated as:
 
 \[
@@ -93,8 +128,6 @@ This plot illustrates the relationships between suppliers based on their product
 
 Where \( J(A, B) \) is the **Jaccard Index**, defined as the size of the intersection divided by the size of the union of two product sets.
 
----
-
-### Linkage Method
+#### Linkage Method
 - Applies **Average Linkage** (`method="average"`)
 - Clusters are merged using the average distance between all pairs of observations across the two clusters.
