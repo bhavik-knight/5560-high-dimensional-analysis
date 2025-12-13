@@ -45,7 +45,7 @@ If `uv` is not already installed, install it using your terminal.
 
 Reference: [uv documentation](https://docs.astral.sh/uv/getting-started/installation/)
 
-Windows (after running the command restart terminal):
+Windows (after running the command, restart the terminal):
 ```bash
 winget install astral-sh.uv
 ```
@@ -55,10 +55,16 @@ Linux/Mac:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### B. Clone the project from Github
+### B. Clone the project from GitHub
 ```bash
-git clone 
+git clone <url>
 ```
+
+where url could be one of the following
+
+normal-url: ```https://github.com/bhavik-knight/5560-high-dimensional-analysis.git```
+
+ssh-url: ```git@github.com:bhavik-knight/5560-high-dimensional-analysis.git```
 
 ### C. Install dependencies
 ```bash
@@ -131,3 +137,4 @@ Where \( J(A, B) \) is the **Jaccard Index**, defined as the size of the interse
 #### Linkage Method
 - Applies **Average Linkage** (`method="average"`)
 - Clusters are merged using the average distance between all pairs of observations across the two clusters.
+
