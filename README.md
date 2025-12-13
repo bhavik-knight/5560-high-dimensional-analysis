@@ -1,5 +1,8 @@
 # Hierarchical Clustering Analysis
 
+## Coded By: 
+Miguel Angel Pafalox Gomez [GitHub](https://github.com/ter-kes)
+
 ## 1. Overview
 
 This project contains a Python script designed to perform **hierarchical agglomerative clustering** on supplier data based on the products they supply.
@@ -41,4 +44,55 @@ Linux/Mac:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### 
+### 4. Clone the project from Github
+```bash
+git clone 
+```
+
+### 5. Install dependencies
+```bash
+uv sync
+```
+
+### 6. Execute the script
+```bash
+uv run main.py
+```
+
+## 7. Output
+
+The script generates two main outputs:
+
+### Console Output
+Prints messages during execution (if any are added).
+
+### Visualization Output
+A saved image file (e.g., `dendrogram.png`) displaying the **Hierarchical Agglomerative Clustering dendrogram**.  
+This plot illustrates the relationships between suppliers based on their product similarity.
+
+---
+
+## 7. Core Logic Details
+
+### Data Preparation
+- Performs **one-hot encoding** on `ProductID`
+- Creates a binary matrix (**Supplier × Product**) where:
+  - `1` indicates the supplier sells the product
+  - `0` indicates the supplier does not
+
+---
+
+### Distance Metric
+- Uses **Jaccard Distance**, calculated as:
+
+\[
+\text{Distance} = 1 - J(A, B)
+\]
+
+Where \( J(A, B) \) is the **Jaccard Index**, defined as the size of the intersection divided by the size of the union of two product sets.
+
+---
+
+### Linkage Method
+- Applies **Average Linkage** (`method="average"`)
+- Clusters are merged using the average distance between all pairs of observations across the two clusters.
