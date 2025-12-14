@@ -1,9 +1,9 @@
 # High Dimensional Analysis
 
 ## Coded By: 
-Miguel Angel Pafalox Gomez [GitHub](https://github.com/ter-kes) [Clustering]
+[Miguel Angel Pafalox Gomez](https://github.com/ter-kes) [Clustering]
 
-Bhavik Bhagat [GitHub](https://github.com/bhavik-knight) [Correceted SQL Query]
+[Bhavik Bhagat](https://bhavikbhagat.netlify.app) [Correceted SQL Query]
 
 Md Chistia Chowdhury [Provided initial SQL Query]
 
@@ -137,4 +137,5 @@ Where \( J(A, B) \) is the **Jaccard Index**, defined as the size of the interse
 #### Linkage Method
 - Applies **Average Linkage** (`method="average"`)
 - Clusters are merged using the average distance between all pairs of observations across the two clusters.
+
 
