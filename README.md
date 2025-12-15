@@ -3,7 +3,7 @@
 ## Coded By: 
 [Miguel Angel Pafalox Gomez](https://github.com/ter-kes) [Clustering]
 
-[Bhavik Bhagat](https://bhavikbhagat.netlify.app) [Correceted SQL Query]
+[Bhavik Bhagat](https://bhavikbhagat.netlify.app) [Recified the SQL Query]
 
 Md Chistia Chowdhury [Provided initial SQL Query]
 
@@ -137,5 +137,6 @@ Where \( J(A, B) \) is the **Jaccard Index**, defined as the size of the interse
 #### Linkage Method
 - Applies **Average Linkage** (`method="average"`)
 - Clusters are merged using the average distance between all pairs of observations across the two clusters.
+
 
 
